@@ -2,7 +2,7 @@
     "project": {
         "name": "DropKick API Documentation",
         "description": "DropKicks API Documentation",
-        "version": "2.1.7",
+        "version": "2.1.8",
         "url": "http://dropkickjs.com/"
     },
     "files": {
