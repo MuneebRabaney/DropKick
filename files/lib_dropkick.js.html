@@ -98,7 +98,7 @@
                         
                           // Browser testing stuff
                           isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ),
-                          isIframe = (window.parent !== window.self &amp;&amp; location.host === parent.location.host),
+                          isIframe = window.parent !== window.self,
                           isIE = navigator.appVersion.indexOf(&quot;MSIE&quot;)!==-1,
                         
                           /**
@@ -680,15 +680,15 @@
                            */
                           open: _.deferred(function() {
                             var dropHeight, above, below, direction, dkTop, dkBottom,
-                              dk = this.data.elem,
-                              dkOptsList = dk.lastChild;
+                                dk = this.data.elem,
+                                dkOptsList = dk.lastChild,
+                                // Using MDNs suggestion for crossbrowser scrollY:
+                                // https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
+                                supportPageOffset = window.pageXOffset !== undefined,
+                                isCSS1Compat = ((document.compatMode || &quot;&quot;) === &quot;CSS1Compat&quot;),
+                                scrollY = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
                         
-                            if ( isIE ) {
-                              dkTop = _.offset( dk ).top - document.documentElement.scrollTop;
-                            } else {
-                              dkTop = _.offset( dk ).top - window.scrollY;
-                            }
-                        
+                            dkTop = _.offset( dk ).top - scrollY;
                             dkBottom = window.innerHeight - ( dkTop + dk.offsetHeight );
                         
                             if ( this.isOpen || this.multiple ) { return false; }
@@ -1013,7 +1013,9 @@
                            *  &#x60;&#x60;&#x60;
                            */
                           refresh: function() {
-                            this.dispose().init( this.data.select, this.data.settings );
+                            if(Object.keys(this).length &gt; 0 &amp;&amp; !( isMobile &amp;&amp; !this.data.settings.mobile )) {
+                              this.dispose().init( this.data.select, this.data.settings );
+                            }
                           },
                         
                           /**
@@ -1028,8 +1030,8 @@
                            *  &#x60;&#x60;&#x60;
                            */
                           dispose: function() {
-                            delete Dropkick.cache[ this.data.cacheID ];
-                            if (!( isMobile &amp;&amp; !this.data.settings.mobile )) {
+                            if (Object.keys(this).length &gt; 0 &amp;&amp; !( isMobile &amp;&amp; !this.data.settings.mobile )) {
+                              delete Dropkick.cache[ this.data.cacheID ];
                               this.data.elem.parentNode.removeChild( this.data.elem );
                               this.data.select.removeAttribute( &quot;data-dkCacheId&quot; );
                             }

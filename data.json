@@ -559,7 +559,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 952,
+            "line": 954,
             "description": "Removes the DK Object from the cache and the element from the DOM",
             "itemtype": "method",
             "name": "dispose",
@@ -570,7 +570,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 974,
+            "line": 976,
             "itemtype": "method",
             "name": "handleEvent",
             "access": "private",
@@ -579,7 +579,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1004,
+            "line": 1006,
             "itemtype": "method",
             "name": "delegate",
             "access": "private",
@@ -588,7 +588,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1049,
+            "line": 1051,
             "itemtype": "method",
             "name": "highlight",
             "access": "private",
@@ -597,7 +597,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1066,
+            "line": 1068,
             "itemtype": "method",
             "name": "keyHandler",
             "access": "private",
@@ -606,7 +606,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1140,
+            "line": 1142,
             "itemtype": "method",
             "name": "searchOptions",
             "access": "private",
@@ -615,7 +615,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1175,
+            "line": 1177,
             "itemtype": "method",
             "name": "scrollTo",
             "access": "private",
@@ -624,7 +624,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1207,
+            "line": 1209,
             "description": "Builds the Dropkick element from a select element",
             "itemtype": "method",
             "name": "build",
@@ -645,7 +645,7 @@
         },
         {
             "file": "lib/dropkick.js",
-            "line": 1317,
+            "line": 1319,
             "description": "Focus DK Element when corresponding label is clicked; close all other DK's",
             "itemtype": "method",
             "name": "onDocClick",
