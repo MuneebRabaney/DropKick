@@ -158,6 +158,11 @@
                               return false;
                             }
                         
+                            if ( sel.length &lt; 1 ) {
+                              console.error(&quot;You must have options inside your &lt;select&gt;: &quot;, sel);
+                              return false;
+                            }
+                        
                             if ( sel.nodeName === &quot;SELECT&quot; ) {
                               return this.init( sel, opts );
                             }
@@ -178,6 +183,16 @@
                              *
                              */
                             initialize: noop,
+                        
+                            /**
+                             * Whether or not you would like Dropkick to render on mobile devices.
+                             *
+                             * @default false
+                             * @property {boolean} mobile
+                             * @type boolean
+                             *
+                             */
+                            mobile: false,
                         
                             /**
                              * Called whenever the value of the Dropkick select changes (by user action or through the API).
@@ -387,16 +402,17 @@
                                 before = this.item( before );
                               }
                         
-                              if ( this.options.indexOf( before ) &gt; -1 ) {
+                              i = this.options.indexOf( before );
+                        
+                              if ( i &gt; -1 ) {
                                 before.parentNode.insertBefore( option, before );
+                                this.options.splice( i, 0, option );
                               } else {
                                 this.data.elem.lastChild.appendChild( option );
+                                this.options.push( option );
                               }
                         
                               option.addEventListener( &quot;mouseover&quot;, this );
-                        
-                              i = this.options.indexOf( before );
-                              this.options.splice( i, 0, option );
                         
                               if ( elem.selected ) {
                                 this.select( i );
@@ -736,7 +752,13 @@
                               elem = this.item( elem );
                             }
                         
-                            _[ disabled ? &quot;addClass&quot; : &quot;removeClass&quot; ]( elem, disabledClass );
+                            if (disabled) {
+                              elem.setAttribute( &#x27;aria-disabled&#x27;, true );
+                              _.addClass( elem, disabledClass );
+                            } else {
+                              elem.setAttribute( &#x27;aria-disabled&#x27;, false );
+                              _.removeClass( elem, disabledClass );
+                            }
                           },
                         
                           /**
@@ -1329,7 +1351,10 @@
                             &quot;role&quot;: &quot;listbox&quot;
                           });
                         
-                          sel.disabled &amp;&amp; _.addClass( ret.elem, &quot;dk-select-disabled&quot; );
+                          if (sel.disabled) {
+                            _.addClass( ret.elem, &quot;dk-select-disabled&quot; );
+                            ret.elem.setAttribute( &#x27;aria-disabled&#x27;, true );
+                          }
                           ret.elem.id = idpre + ( sel.id ? &quot;-&quot; + sel.id : &quot;&quot; );
                           _.addClass( ret.elem, sel.className );
                         
