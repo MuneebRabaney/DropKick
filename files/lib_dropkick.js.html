@@ -21,7 +21,7 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>2.1.8</b>
+                    API Docs for Version: <b>2.1.9</b>
                 </p>
             </li>
         </div>
@@ -382,7 +382,8 @@
                               option = _.create( &quot;li&quot;, {
                                 &quot;class&quot;: &quot;dk-option&quot;,
                                 &quot;data-value&quot;: elem.value,
-                                &quot;innerHTML&quot;: elem.text,
+                                &quot;text&quot;: elem.text,
+                                &quot;innerHTML&quot;: elem.innerHTML,
                                 &quot;role&quot;: &quot;option&quot;,
                                 &quot;aria-selected&quot;: &quot;false&quot;,
                                 &quot;id&quot;: &quot;dk&quot; + this.data.cacheID + &quot;-&quot; + ( elem.id || elem.value.replace( &quot; &quot;, &quot;-&quot; ) )
@@ -870,7 +871,7 @@
                         
                                 combobox.setAttribute( &quot;aria-activedescendant&quot;, elem.id );
                                 combobox.className = &quot;dk-selected &quot; + option.className;
-                                combobox.innerHTML = option.text;
+                                combobox.innerHTML = option.innerHTML;
                         
                                 this.selectedOptions[0] = elem;
                                 option.selected = true;
@@ -1340,7 +1341,8 @@
                                 option = _.create( &quot;li&quot;, {
                                   &quot;class&quot;: &quot;dk-option &quot;,
                                   &quot;data-value&quot;: node.value,
-                                  &quot;innerHTML&quot;: node.text,
+                                  &quot;text&quot;: node.text,
+                                  &quot;innerHTML&quot;: node.innerHTML,
                                   &quot;role&quot;: &quot;option&quot;,
                                   &quot;aria-selected&quot;: &quot;false&quot;,
                                   &quot;id&quot;: idpre + &quot;-&quot; + ( node.id || node.value.replace( &quot; &quot;, &quot;-&quot; ) )
