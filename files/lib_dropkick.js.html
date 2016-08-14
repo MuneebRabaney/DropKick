@@ -396,6 +396,11 @@
                                 option.setAttribute( &quot;aria-disabled&quot;, &quot;true&quot; );
                               }
                         
+                              if ( elem.hidden ) {
+                                _.addClass( option, &quot;dk-option-hidden&quot; );
+                                option.setAttribute( &quot;aria-hidden&quot;, &quot;true&quot; );
+                              }
+                        
                               this.data.select.add( elem, before );
                         
                               if ( typeof before === &quot;number&quot; ) {
@@ -758,6 +763,41 @@
                             } else {
                               elem.setAttribute( &#x27;aria-disabled&#x27;, false );
                               _.removeClass( elem, disabledClass );
+                            }
+                          },
+                        
+                          /**
+                           * Hides or shows an option.
+                           *
+                           * @method hide
+                           * @param  {Integer} elem     The element or index to hide
+                           * @param  {Boolean} hidden   Whether or not to hide the element
+                           * @example
+                           *  &#x60;&#x60;&#x60;js
+                           *    var select = new Dropkick(&quot;#select&quot;);
+                           *
+                           *    // To hide an option with an index
+                           *    select.hide(4, true);
+                           *
+                           *    // To make an option visible with an index
+                           *    select.hide(4, false);
+                           *  &#x60;&#x60;&#x60;
+                           */
+                          hide: function( elem, hidden ) {
+                            var hiddenClass = &quot;dk-option-hidden&quot;;
+                        
+                            if ( hidden === undefined ) {
+                              hidden = true;
+                            }
+                        
+                            elem = this.item( elem );
+                        
+                            if (hidden) {
+                              elem.setAttribute( &#x27;aria-hidden&#x27;, true );
+                              _.addClass( elem, hiddenClass );
+                            } else {
+                              elem.setAttribute( &#x27;aria-hidden&#x27;, false );
+                              _.removeClass( elem, hiddenClass );
                             }
                           },
                         
@@ -1311,6 +1351,11 @@
                                 if ( node.disabled ) {
                                   _.addClass( option, &quot;dk-option-disabled&quot; );
                                   option.setAttribute( &quot;aria-disabled&quot;, &quot;true&quot; );
+                                }
+                        
+                                if ( node.hidden ) {
+                                  _.addClass( option, &quot;dk-option-hidden&quot; );
+                                  option.setAttribute( &quot;aria-hidden&quot;, &quot;true&quot; );
                                 }
                         
                                 if ( node.selected ) {
